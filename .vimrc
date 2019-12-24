@@ -15,7 +15,7 @@
 " GitHub:        http://github.com/chenkaie/DotFiles/blob/master/.vimrc
 "                http://github.com/chenkaie/DotFiles/tree/master/.vim/
 "
-" Last Modified: Wed Dec 16, 2015  02:09AM
+" Last Modified: Thu Oct 18, 2018  08:24PM
 " ==============================================================================
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
@@ -106,7 +106,7 @@ set shiftround     " Round indent to multiple of shiftwidth
 set shiftwidth=4   " Number of spaces for each indent
 set tabstop=4      " Number of spaces for tab key
 set softtabstop=4  " Number of spaces for tab key while performing editing operations
-"set expandtab     " Use spaces for tabs.
+set expandtab     " Use spaces for tabs.
 
 set history=1000   " keep 1000 lines of command line history
 set ruler          " show the cursor position all the time
@@ -222,9 +222,11 @@ if OS == "Darwin"
 else
 	"Visualize some special chars
 	set fillchars=vert:│,fold:-,diff:╱
-	set listchars=tab:⋮\ ,trail:⌴,eol:·,precedes:◂,extends:▸
+	"set listchars=tab:⋮\ ,trail:⌴,eol:·,precedes:◂,extends:▸
+	set listchars=tab:»\ ,trail:·,precedes:◂,extends:▸
 	" Use below line if you don't have font patched.
 	"set listchars=tab:»\ ,trail:·,eol:$,nbsp:%,extends:>,precedes:<
+	"set listchars=tab:»\ ,trail:·,nbsp:%,extends:>,precedes:<
 endif
 
 " Enable list mode by default
@@ -524,7 +526,7 @@ endif
 	" ctags
 	""""""""""""""""""""""""""""""
 	" Set tags path
-	set tags=tags,../tags,../../tags
+	set tags=tags,../tags,../../tags,../../../tags,../../../../tags,../../../../../tags
 
 	""""""""""""""""""""""""""""""
 	" cscope
@@ -756,6 +758,7 @@ nnoremap <leader>x :Hexmode<CR>
 	Plugin 'terryma/vim-expand-region'
 	Plugin 'aceofall/gtags.vim'
 	Plugin 'chrisbra/vim-diff-enhanced'
+	Plugin 'rdnetto/YCM-Generator'
 
 	call vundle#end()
 
@@ -1216,3 +1219,23 @@ autocmd VimEnter * :call AfterStart()
 " }}}
 
 " vim:fdm=marker:fdl=0:
+"
+"
+" My commands
+" " echo current file absolute path
+command Path :echo expand('%:p')
+
+
+function! LoadCscope()
+  let db = findfile("cscope.out", ".;")
+  if (!empty(db))
+    let path = strpart(db, 0, match(db, "/cscope.out$"))
+    set nocscopeverbose " suppress 'duplicate connection' error
+    exe "cs add " . db . " " . path
+    set cscopeverbose
+  " else add the database pointed to by environment variable
+  elseif $CSCOPE_DB != ""
+    cs add $CSCOPE_DB
+  endif
+endfunction
+au BufEnter /* call LoadCscope()

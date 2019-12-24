@@ -114,3 +114,8 @@ color   tree.directory         221     default
 #   LINE(PALETTE_6, "", COLOR_RED, )
 
 # vim: set expandtab sw=4 tabstop=4:
+#
+
+# set vertical split for commit log and code diff
+#set vertical-split = yes
+

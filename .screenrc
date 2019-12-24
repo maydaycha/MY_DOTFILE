@@ -20,9 +20,9 @@ defencoding utf8
 # 256 Color Support
 termcapinfo xterm "Co#256:AB=\E[48;5;%dm:AF=\E[38;5;%dm"
 #for Mac
-termcapinfo xterm-color "Co#256:AB=\E[48;5;%dm:AF=\E[38;5;%dm"
+#termcapinfo xterm-color "Co#256:AB=\E[48;5;%dm:AF=\E[38;5;%dm"
 
-term $TERM # depend on $TERM
+#term $TERM # depend on $TERM
 term xterm # or specified term
 
 # allow bold colors - necessary for some reason
@@ -135,6 +135,12 @@ bindkey -k k; detach
 screen -t Tab1     1
 screen -t Tab2     2
 screen -t Tab3     3
+screen -t Tab4     4
+screen -t Tab5     5
+screen -t Tab6     6
+screen -t Tab7     7
+screen -t Tab8     8
+screen -t Tab9     9
 screen -t Top      10 htop
 
 # Start at window 1

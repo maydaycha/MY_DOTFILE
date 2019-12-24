@@ -5,7 +5,7 @@
 [ -z "$PS1" ] && return
 
 # Automatically attach tmux session if exist
-tmux attach-session > /dev/null 2>&1
+# tmux attach-session > /dev/null 2>&1
 
 # Source global definitions
 [ -f /etc/bashrc ] && . /etc/bashrc
@@ -14,7 +14,7 @@ tmux attach-session > /dev/null 2>&1
 # Source extra local definitions, ~/.extra can be used for settings you don't want to commit
 [ -r ~/.extra ] && . ~/.extra
 
-DOTFILES="${DOTFILES:-$HOME/Repos/unix-env-deploy/DotFiles}"
+DOTFILES="${DOTFILES:-$HOME/DotFiles}"
 TOOLS="${TOOLS:-$HOME/Repos/unix-env-deploy/Tools}"
 
 infocmp screen-256color > /dev/null 2>&1
@@ -184,7 +184,7 @@ alias l.='ls -dAFh .[^.]*'                      # ls only Dotfiles
 alias lst='ls -hFtal | grep $(date +%Y-%m-%d)'  # ls Today
 alias lsd='ls --group-directories-first'        # cool... but break the autocompletion when no "dirs" pattern matching, so not default it to ls
 
-alias vim='vim -X -p'
+#alias vim='vim -X -p'
 alias vi='vim'
 alias cp='cp -i -v'
 alias mv='mv -i -v'
@@ -499,12 +499,12 @@ export LESS_TERMCAP_us=$'\E[04;38;5;146m' # begin underline
 # exist cowsay && echo "Welcome to $HOSTNAME" | cowsay -f default
 
 # icat (Image cat) generated 256-color ascii images
-if [ -d "$DOTFILES/ascii-photo" ]; then
-	filepath=($DOTFILES/ascii-photo/*)
-	nfile=${#filepath[@]}
-	asciiwp="${filepath[RANDOM % nfile]}"
-	cat $asciiwp
-fi
+#if [ -d "$DOTFILES/ascii-photo" ]; then
+	#filepath=($DOTFILES/ascii-photo/*)
+	#nfile=${#filepath[@]}
+	#asciiwp="${filepath[RANDOM % nfile]}"
+	#cat $asciiwp
+#fi
 
 # Completion support
 [ -z "$BASH_COMPLETION_COMPAT_DIR" ] && source $DOTFILES/completion/bash-completion/bash_completion
@@ -943,3 +943,7 @@ trap _exit EXIT
 
 # vim: fdm=marker ts=4 sw=4:
 
+alias wcgrep='wcgrep --color=auto'
+JAVA_HOME=/usr/lib/jvm/java-8-openjdk-amd64
+export PATH=$JAVA_HOME/bin:$JAVA_HOME/jre/bin:$PATH
+export CLASSPATH=$CLASSPATH:$JAVA_HOME/lib:$JAVA_HOME/jre/lib
