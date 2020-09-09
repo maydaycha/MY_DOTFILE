@@ -222,7 +222,7 @@ alias brew_update="brew -v update; brew -v upgrade --all; brew cleanup; brew cas
 #export GREP_OPTIONS="--exclude-dir=\*/.svn/\* --exclude=\*~ --exclude=\*.swp"
 #alias wcgrep='wcgrep -inh --colour=auto' has been defined in wcgrep
 alias mdiff='diff -ruN --exclude=.svn'
-alias diff='colordiff.pl'
+#alias diff='colordiff.pl'
 
 # Moving around & all that jazz
 #alias cd='pushd > /dev/null'
@@ -943,7 +943,11 @@ trap _exit EXIT
 
 # vim: fdm=marker ts=4 sw=4:
 
-alias wcgrep='wcgrep --color=auto'
+GREP_OPTIONS='--exclude="tags"  --exclude="cscope.*"'
+alias wcgrep="wcgrep --color=auto ${GREP_OPTIONS}"
 JAVA_HOME=/usr/lib/jvm/java-8-openjdk-amd64
 export PATH=$JAVA_HOME/bin:$JAVA_HOME/jre/bin:$PATH
 export CLASSPATH=$CLASSPATH:$JAVA_HOME/lib:$JAVA_HOME/jre/lib
+
+
+source /usr/share/bash-completion/completions/git

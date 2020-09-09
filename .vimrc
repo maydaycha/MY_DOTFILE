@@ -15,7 +15,7 @@
 " GitHub:        http://github.com/chenkaie/DotFiles/blob/master/.vimrc
 "                http://github.com/chenkaie/DotFiles/tree/master/.vim/
 "
-" Last Modified: Thu Oct 18, 2018  08:24PM
+" Last Modified: Fri Sep 04, 2020  01:03PM
 " ==============================================================================
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
@@ -87,6 +87,8 @@ else
 	"colorscheme jellybeans
 	"colorscheme ir_black_cterm
 endif
+" use 'sp' to split windows at bottom
+set splitbelow
 
 " Status Line
 set laststatus=2
@@ -526,7 +528,7 @@ endif
 	" ctags
 	""""""""""""""""""""""""""""""
 	" Set tags path
-	set tags=tags,../tags,../../tags,../../../tags,../../../../tags,../../../../../tags
+	set tags=tags,../tags,../../tags,../../../tags,../../../../tags,../../../../../tags,../../../../../../tags,../../../../../../../tags,../../../../../../../../tags,../../../../../../../../../tags,../../../../../../../../../../tags,../../../../../../../../../../../tags,/../../../../../../../../../../../../tags,/../../../../../../../../../../../../../tags,/../../../../../../../../../../../../../../tags
 
 	""""""""""""""""""""""""""""""
 	" cscope
@@ -567,6 +569,8 @@ endif
 	if match(system('ls ~/usr/bin/cscope'), 'cscope') != -1
 		set cscopeprg=~/usr/bin/cscope
 	endif
+
+    set cscoperelative
 
 	""""""""""""""""""""""""""""""
 	" For Linux Kernel
@@ -752,7 +756,7 @@ nnoremap <leader>x :Hexmode<CR>
 	Plugin 'altercation/vim-colors-solarized'
 	Plugin 'int3/vim-extradite'
 	Plugin 'w0ng/vim-hybrid'
-	Plugin 'Valloric/YouCompleteMe'
+	"Plugin 'Valloric/YouCompleteMe'
 	Plugin 'bruno-/vim-man'
 	"Plugin 'Mizuchi/STL-Syntax'
 	Plugin 'terryma/vim-expand-region'
